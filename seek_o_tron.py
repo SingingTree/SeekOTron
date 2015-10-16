@@ -97,38 +97,18 @@ class SeekOTron:
                                  ('c3B', (255, 255, 255, 255, 255, 255))
                                  )
 
-    def get_tile_size(self):
-        return (self.window.get_size()[0] // self.game_state.width,
-                self.window.get_size()[1] // self.game_state.height)
-
-    def get_tile_aspect_ratio(self):
-        tile_size = self.get_tile_size()
-        return tile_size[0] / tile_size[1]
-
     def draw_robot(self):
         sprite = pyglet.sprite.Sprite(self.robot_image)
         self.scale_sprite_to_tile(sprite)
-        # Position sprite
-        tile_size = self.get_tile_size()
         robot_square_x, robot_square_y = self.game_state.player_position
-        sprite_horizontal_buffer = (tile_size[0] - sprite.width) // 2
-        sprite.x = robot_square_x * tile_size[0] + sprite_horizontal_buffer
-        sprite_vertical_buffer = (tile_size[1] - sprite.height) // 2
-        sprite.y = robot_square_y * tile_size[1] + sprite_vertical_buffer
-        # Draw it
+        self.position_sprite_in_tile(robot_square_x, robot_square_y, sprite)
         sprite.draw()
 
     def draw_loot(self):
         sprite = pyglet.sprite.Sprite(self.loot_image)
         self.scale_sprite_to_tile(sprite)
-        # Position sprite
-        tile_size = self.get_tile_size()
         loot_square_x, loot_square_y = self.game_state.loot_position
-        sprite_horizontal_buffer = (tile_size[0] - sprite.width) // 2
-        sprite.x = loot_square_x * tile_size[0] + sprite_horizontal_buffer
-        sprite_vertical_buffer = (tile_size[1] - sprite.height) // 2
-        sprite.y = loot_square_y * tile_size[1] + sprite_vertical_buffer
-        # Draw it
+        self.position_sprite_in_tile(loot_square_x, loot_square_y, sprite)
         sprite.draw()
 
     def draw_moving_banner(self):
@@ -152,6 +132,21 @@ class SeekOTron:
         sprite.y = sprite_vertical_buffer
         # Draw it
         sprite.draw()
+
+    def get_tile_size(self):
+        return (self.window.get_size()[0] // self.game_state.width,
+                self.window.get_size()[1] // self.game_state.height)
+
+    def get_tile_aspect_ratio(self):
+        tile_size = self.get_tile_size()
+        return tile_size[0] / tile_size[1]
+
+    def position_sprite_in_tile(self, tile_x, tile_y, sprite):
+        tile_size = self.get_tile_size()
+        sprite_horizontal_buffer = (tile_size[0] - sprite.width) // 2
+        sprite.x = tile_x * tile_size[0] + sprite_horizontal_buffer
+        sprite_vertical_buffer = (tile_size[1] - sprite.height) // 2
+        sprite.y = tile_y * tile_size[1] + sprite_vertical_buffer
 
     def process_move(self):
         if len(self.buffered_moves) == 0:
