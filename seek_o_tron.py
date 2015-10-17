@@ -114,23 +114,13 @@ class SeekOTron:
     def draw_moving_banner(self):
         sprite = pyglet.sprite.Sprite(self.moving_banner_image)
         self.scale_sprite_to_window(sprite)
-        # Position sprite
-        sprite_horizontal_buffer = (self.window.get_size()[0] - sprite.width) // 2
-        sprite.x = sprite_horizontal_buffer
-        sprite_vertical_buffer = (self.window.get_size()[1] - sprite.height) // 2
-        sprite.y = sprite_vertical_buffer
-        # Draw it
+        self.position_sprite_in_window(sprite)
         sprite.draw()
 
     def draw_win_banner(self):
         sprite = pyglet.sprite.Sprite(self.win_banner_image)
         self.scale_sprite_to_window(sprite)
-        # Position sprite
-        sprite_horizontal_buffer = (self.window.get_size()[0] - sprite.width) // 2
-        sprite.x = sprite_horizontal_buffer
-        sprite_vertical_buffer = (self.window.get_size()[1] - sprite.height) // 2
-        sprite.y = sprite_vertical_buffer
-        # Draw it
+        self.position_sprite_in_window(sprite)
         sprite.draw()
 
     def get_tile_size(self):
@@ -147,6 +137,12 @@ class SeekOTron:
         sprite.x = tile_x * tile_size[0] + sprite_horizontal_buffer
         sprite_vertical_buffer = (tile_size[1] - sprite.height) // 2
         sprite.y = tile_y * tile_size[1] + sprite_vertical_buffer
+
+    def position_sprite_in_window(self, sprite):
+        sprite_horizontal_buffer = (self.window.get_size()[0] - sprite.width) // 2
+        sprite.x = sprite_horizontal_buffer
+        sprite_vertical_buffer = (self.window.get_size()[1] - sprite.height) // 2
+        sprite.y = sprite_vertical_buffer
 
     def process_move(self):
         if len(self.buffered_moves) == 0:
