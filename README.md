@@ -52,7 +52,7 @@ Anywho! That's all there is to controlling the robot. You can solve puzzles with
 
 Note there a limit to how many commands that game will do before it stops, to stop you accidentally setting up tons of moves and having to wait ages for the friendly robot to follow them all through. Info on how to change this is in the Haxxing the Game section of this readme.
 
-#### Arithmatic expressions
+#### Arithmetic expressions
 
 Seek lang supports simple arithmetic: addition, subtraction, multiplication, division. Seek lang only uses integers, so be aware some rounding may take place behind the scenes.
 
