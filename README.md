@@ -13,6 +13,8 @@ This game is played by writing instructions for the robot in the `instructions.s
 
 For the sake of grid coordinates, the bottom left space in the grid is x: 0 and y: 0, moving to the right increases the x value, moving up increases the y value.
 
+You can currently win each 'map', but there is no global win state for winning a certain number of maps.
+
 ### Writing Seek Lang
 
 Seek lang(guage) is a simple programming language created for telling the robot in the game to move around. The language has only a few concepts to wrangle:
